@@ -1,0 +1,19 @@
+# Entorno virtual
+.venv/
+env/
+
+# Cachés de Python y herramientas
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Base de datos local
+*.sqlite3
+*.db
+
+# Configuración local de VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
