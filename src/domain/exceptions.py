@@ -9,6 +9,9 @@ class DomainError(Exception):
 class InvalidQuantityError(DomainError):
     """Erro when there is no allowed number: negative, infinite, NaN, fractional number"""
 
+    def __init__(self) -> None:
+        super().__init__("must be a finite or no negative number")
+
     """!!! ZERO is allowed"""
 
 
