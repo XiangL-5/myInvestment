@@ -8,6 +8,8 @@ import domain.exceptions as exception
 
 @dataclass(frozen=True, slots=True)
 class Quantity:
+    """Immutable Value Object representing a non-negative asset quantity."""
+
     units: Decimal
 
     def __post_init__(self) -> None:
@@ -15,38 +17,30 @@ class Quantity:
             raise TypeError("units must be a Decimal instance")
         if not self.units.is_finite():
             raise exception.InvalidQuantityError()
-        if not self.units >= Decimal("0"):
+        if self.units < Decimal("0"):
             raise exception.InvalidQuantityError()
-        object.__setattr__(self, "units", self.units.quantize(Decimal("0.01")))
 
     def __str__(self) -> str:
         return str(self.units)
 
-    def __add__(self, other: Quantity) -> Quantity:
+    def __add__(self, other: object) -> Quantity:
         if not isinstance(other, Quantity):
-            raise TypeError
-
+            return NotImplemented
         return Quantity(self.units + other.units)
 
-    def __sub__(self, other: Quantity) -> Quantity:
+    def __sub__(self, other: object) -> Quantity:
         if not isinstance(other, Quantity):
-            raise TypeError
+            return NotImplemented
         if self < other:
-            raise exception.InvalidQuantityError
-
+            raise exception.InvalidQuantityError()
         return Quantity(self.units - other.units)
 
-    def __lt__(self, other: Quantity) -> bool:
+    def __lt__(self, other: object) -> bool:
         if not isinstance(other, Quantity):
-            raise TypeError
+            return NotImplemented
         return self.units < other.units
 
-    def __eq__(self, other: Quantity) -> bool:
+    def __le__(self, other: object) -> bool:
         if not isinstance(other, Quantity):
-            raise TypeError
-        return self.units == other.units
-
-    def __le__(self, other: Quantity) -> bool:
-        if not isinstance(other, Quantity):
-            raise TypeError
+            return NotImplemented
         return self.units <= other.units

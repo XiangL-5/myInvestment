@@ -14,7 +14,7 @@ class TestQuantityCreationAndInvariants:
         """A valid positive Decimal number"""
         qty1 = Quantity(Decimal("10.5"))
         assert qty1.units == Decimal("10.5")
-        assert str(qty1) == "10.50"
+        assert str(qty1) == "10.5"
 
         qty2 = Quantity(Decimal("0.01"))
         assert qty2.units == Decimal("0.01")
