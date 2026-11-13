@@ -29,3 +29,7 @@ class InvalidFinancialOperationError(DomainError):
 
 class InvalidAssetError(DomainError):
     """Error when is introducing invalid format of data"""
+
+
+class InvalidAccountError(DomainError):
+    """Error when is introducing invalid format of data to Account object"""
