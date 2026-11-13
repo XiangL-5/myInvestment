@@ -25,3 +25,7 @@ class CurrencyMismatchError(DomainError):
 
 class InvalidFinancialOperationError(DomainError):
     """Error when is making math operations that lack of sense"""
+
+
+class InvalidAssetError(DomainError):
+    """Error when is introducing invalid format of data"""
